@@ -7,13 +7,20 @@ from django.contrib.auth import logout
 
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm
+from django.core.mail import send_mail
+from django.contrib.auth.models import User
 
 def logout_view(request):
 	"""Log the user out."""
 	logout(request)
-	return HttpResponseRedirect(reverse('learning_logs:index'))
-	
-	
+	return HttpResponseRedirect(reverse('requests:index'))
+
+def confirm(request):
+	return render(request, 'users/confirm.html')
+
+def already_registered(request):
+	return render(request, 'users/already_registered')
+
 def register(request):
 	"""Register a new user."""
 	if request.method != 'POST':
@@ -28,6 +35,6 @@ def register(request):
 			authenticated_user = authenticate(username=new_user.username,
 				password=request.POST['password1'])
 			login(request, authenticated_user)
-			return HttpResponseRedirect('https://www.reddit.com')
+			return HttpResponseRedirect(reverse('users:confirm'))
 	context = {'form': form}
 	return render(request, 'users/register.html', context)

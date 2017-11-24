@@ -9,4 +9,9 @@ urlpatterns = [
 		name='login'),
 	# Registration page
 	url(r'^register/$', views.register, name='register'),
+	# Logout page
+	url(r'^logout/$', views.logout_view, name='logout'),
+	# Thank you for registering, go to email to confirm
+	url(r'^confirm/$', views.confirm, {'template_name': 'users/confirm.html'},
+		name='confirm'),
 ]
