@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
-from .models import Request
+from .models import Request, Comment
 from .forms import RequestForm
 
 def index(request):
@@ -30,3 +30,11 @@ def new_request(request):
 			
 	context = {'form': form}
 	return render(request, 'requests/new_request.html', context)
+	
+def comments(request, request_id):
+	#show a single reuest and all its comments
+	r = Request.objects.get(id=request_id)
+	comments = r.comment_set.order_by('-date_added')
+	context = {'request':r, 'comments': comments}
+	return render(request, 'requests/comments.html', context)
+	

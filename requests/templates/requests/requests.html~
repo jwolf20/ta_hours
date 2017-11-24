@@ -3,9 +3,7 @@
   <p>Requests</p>
   <ul>
     {% for request in requests %}
-      <li>
-        <a href="{% url 'requests:comments' request.id %}">{{ request }}</a>
-      </li>
+      <li>{{ request }}</li>
     {% empty %}
       <li>No requests have been posted.</li>
     {% endfor %}

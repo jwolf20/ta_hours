@@ -1,0 +1,17 @@
+{% extends 'requests/base.html' %}
+{% block content %}
+  <p>Request: {{ request }}</p>
+  <p>Comments:</p>
+  <ul>
+  {% for comment in comments %}
+    <li>
+      <p>{{ comment.date_added|date:'M d, Y H:i' }}</p>
+      <p>{{ comment.text|linebreaks }}</p>
+    </li>
+  {% empty %}
+    <li>
+      There are no comments for this request yet.
+    </li>
+  {% endfor %}
+  </ul>
+{% endblock content %}
