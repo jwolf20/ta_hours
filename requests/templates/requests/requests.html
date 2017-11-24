@@ -5,6 +5,7 @@
     {% for request in requests %}
       <li>
         <a href="{% url 'requests:comments' request.id %}">{{ request }}</a>
+        <p> {{ request.date }} - {{ request.time }} - {{ request.room }} - {{ request.course }}</p>
       </li>
     {% empty %}
       <li>No requests have been posted.</li>

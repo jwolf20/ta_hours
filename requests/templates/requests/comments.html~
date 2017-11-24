@@ -6,8 +6,6 @@
   {{ request.date }}
   {{ request.time }}
   {{ request.room }}
-  {{ request.course }}
-  {{ request.value }}
   
   <p>Comments:</p>
   <ul>
