@@ -1,0 +1,19 @@
+{% extends "topics/base.html" %}
+{% block content %}
+  <p>Topics</p>
+  <ul>
+    {% for topic in topics %}
+      <li>
+        <a href="{% url 'topics:comments' topic.id %}">{{ topic }}</a>
+        {% for course in topic.course_set %}
+          <p> {{ course.date }} - {{ course.time }} - {{ course.room }}</p>
+        {% endfor %}
+      </li>
+    {% empty %}
+      <li>No requests have been posted.</li>
+    {% endfor %}
+  </ul>
+  
+  <a href="{% url 'topics:new_topic' %}">Add a new topic</a>
+  
+{% endblock content %}

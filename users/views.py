@@ -13,7 +13,7 @@ from django.contrib.auth.models import User
 def logout_view(request):
 	"""Log the user out."""
 	logout(request)
-	return HttpResponseRedirect(reverse('requests:index'))
+	return HttpResponseRedirect(reverse('topics:index'))
 
 def confirm(request):
 	return render(request, 'users/confirm.html')
